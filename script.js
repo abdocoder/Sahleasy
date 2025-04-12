@@ -272,90 +272,142 @@ document.addEventListener('DOMContentLoaded', function() {
             cartItemsList.appendChild(cartItemElement);
         });
         
-        // Calculate discount based on quantity
-        const discount = calculateDiscount(cart);
-        const total = subtotal - discount;
-        
-        updateCartSummary(subtotal, discount, total);
-        
-        // Add event listeners to remove buttons
-        document.querySelectorAll('.cart-item-remove').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = parseInt(this.getAttribute('data-id'));
-                removeFromCart(productId);
-            });
-        });
-    }
 
-    function calculateDiscount(cartItems) {
-        let totalDiscount = 0;
-        
-        cartItems.forEach(item => {
-            if (item.quantity >= 3) {
-                totalDiscount += 500;
-            } else if (item.quantity >= 2) {
-                totalDiscount += 200;
+
+                // Calculate discount based on quantity
+                const discount = calculateDiscount(cart);
+                const totalBeforeDelivery = subtotal - discount;
+                
+                // Get delivery cost
+                const deliveryMethod = document.querySelector('input[name="delivery"]:checked')?.value;
+                let deliveryCost = 0;
+                
+                if (deliveryMethod === 'home') {
+                    deliveryCost = 400;
+                } else if (deliveryMethod === 'office') {
+                    deliveryCost = 800;
+                }
+                
+                const finalTotal = totalBeforeDelivery + deliveryCost;
+                
+                updateCartSummary(subtotal, discount, finalTotal, deliveryCost);
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.cart-item-remove').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const productId = parseInt(this.getAttribute('data-id'));
+                        removeFromCart(productId);
+                    });
+                });
             }
-        });
-        
-        return totalDiscount;
-    }
 
-    function updateCartSummary(subtotal, discount, total) {
-        document.getElementById('subtotal').textContent = `${subtotal} DA`;
-        document.getElementById('discount').textContent = `-${discount} DA`;
-        document.getElementById('total').textContent = `${total} DA`;
-    }
+            function calculateDiscount(cartItems) {
+                let totalDiscount = 0;
+                
+                cartItems.forEach(item => {
+                    if (item.quantity >= 3) {
+                        totalDiscount += 500;
+                    } else if (item.quantity >= 2) {
+                        totalDiscount += 200;
+                    }
+                });
+                
+                return totalDiscount;
+            }
 
-    function updateOrderSummary() {
-        const orderItemsContainer = document.querySelector('.order-items');
-        let subtotal = 0;
-        
-        orderItemsContainer.innerHTML = '';
-        
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            subtotal += itemTotal;
-            
-            const orderItem = document.createElement('div');
-            orderItem.className = 'order-item';
-            
-            orderItem.innerHTML = `
-                <span>${item.title} x ${item.quantity}</span>
-                <span>${itemTotal} DA</span>
-            `;
-            
-            orderItemsContainer.appendChild(orderItem);
-        });
-        
-        const discount = calculateDiscount(cart);
-        const total = subtotal - discount;
-        
-        document.getElementById('order-subtotal').textContent = `${subtotal} DA`;
-        document.getElementById('order-discount').textContent = `-${discount} DA`;
-        document.getElementById('order-total').textContent = `${total} DA`;
-    }
+            function updateCartSummary(subtotal, discount, total, deliveryCost = 0) {
+                document.getElementById('subtotal').textContent = `${subtotal} DA`;
+                document.getElementById('discount').textContent = `-${discount} DA`;
+                document.getElementById('delivery-cost').textContent = `${deliveryCost} DA`;
+                document.getElementById('total').textContent = `${total} DA`;
+            }
 
-    function prepareOrderSummary() {
-        let orderItems = '';
-        let subtotal = 0;
+            function updateOrderSummary() {
+                const orderItemsContainer = document.querySelector('.order-items');
+                let subtotal = 0;
+                
+                orderItemsContainer.innerHTML = '';
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    
+                    const orderItem = document.createElement('div');
+                    orderItem.className = 'order-item';
+                    
+                    orderItem.innerHTML = `
+                        <span>${item.title} x ${item.quantity}</span>
+                        <span>${itemTotal} DA</span>
+                    `;
+                    
+                    orderItemsContainer.appendChild(orderItem);
+                });
+                
+                const discount = calculateDiscount(cart);
+                const totalBeforeDelivery = subtotal - discount;
+                
+                // Get delivery cost
+                const deliveryMethod = document.querySelector('input[name="delivery"]:checked')?.value;
+                let deliveryCost = 0;
+                
+                if (deliveryMethod === 'home') {
+                    deliveryCost = 400;
+                } else if (deliveryMethod === 'office') {
+                    deliveryCost = 800;
+                }
+                
+                const finalTotal = totalBeforeDelivery + deliveryCost;
+                
+                document.getElementById('order-subtotal').textContent = `${subtotal} DA`;
+                document.getElementById('order-discount').textContent = `-${discount} DA`;
+                document.getElementById('order-delivery').textContent = `${deliveryCost} DA`;
+                document.getElementById('order-total').textContent = `${finalTotal} DA`;
+                
+                // Add delivery method to the form for submission
+                document.getElementById('delivery-method-input').value = 
+                    deliveryMethod === 'home' ? 'Home Delivery (+400 DA)' : 'Office Pickup (+800 DA)';
+            }
+
+            function prepareOrderSummary() {
+                let orderItems = '';
+                let subtotal = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    orderItems += `${item.title} x ${item.quantity} - ${itemTotal} DA\n`;
+                });
+                
+                const discount = calculateDiscount(cart);
+                const totalBeforeDelivery = subtotal - discount;
+                
+                // Get delivery cost
+                const deliveryMethod = document.querySelector('input[name="delivery"]:checked')?.value;
+                let deliveryCost = 0;
+                let deliveryMethodText = '';
+                
+                if (deliveryMethod === 'home') {
+                    deliveryCost = 400;
+                    deliveryMethodText = 'Home Delivery (+400 DA)';
+                } else if (deliveryMethod === 'office') {
+                    deliveryCost = 800;
+                    deliveryMethodText = 'Office Pickup (+800 DA)';
+                }
+                
+                const finalTotal = totalBeforeDelivery + deliveryCost;
+                
+                const orderSummary = `
+                    ORDER SUMMARY:
+                    ${orderItems}
+                    Subtotal: ${subtotal} DA
+                    Discount: -${discount} DA
+                    Delivery Method: ${deliveryMethodText}
+                    Delivery Cost: +${deliveryCost} DA
+                    Total: ${finalTotal} DA
+                `;
+
         
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            subtotal += itemTotal;
-            orderItems += `${item.title} x ${item.quantity} - ${itemTotal} DA\n`;
-        });
-        
-        const discount = calculateDiscount(cart);
-        const total = subtotal - discount;
-        
-        const orderSummary = `
-            ORDER SUMMARY:
-            ${orderItems}
-            Subtotal: ${subtotal} DA
-            Discount: -${discount} DA
-            Total: ${total} DA
-        `;
+
         
         document.getElementById('order-summary-input').value = orderSummary;
         
