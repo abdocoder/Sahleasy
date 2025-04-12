@@ -165,7 +165,9 @@ main {
     font-size: 1.8rem;
     color: #333;
 }
-
+html {
+    scroll-behavior: smooth;
+}
 /* Products Grid Styles */
 .products-grid {
     display: grid;
