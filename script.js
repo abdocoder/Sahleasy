@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     // Algerian wilayas
-        // Algerian wilayas
     const wilayas = [
         "Adrar", "Chlef", "Laghouat", "Oum El Bouaghi", "Batna", "Béjaïa", 
         "Biskra", "Béchar", "Blida", "Bouira", "Tamanrasset", "Tébessa", 
@@ -94,31 +93,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Shop Now button
-        shopNowBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            navigateTo('products');
-            // Smooth scroll to products section
-            setTimeout(() => {
-                document.getElementById('products-page').scrollIntoView({ 
-                    behavior: 'smooth' 
-                });
-            }, 10);
-        });
+        if (shopNowBtn) {
+            shopNowBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                navigateTo('products');
+                // Smooth scroll to products section
+                setTimeout(() => {
+                    const productsPage = document.getElementById('products-page');
+                    if (productsPage) {
+                        productsPage.scrollIntoView({ 
+                            behavior: 'smooth' 
+                        });
+                    }
+                }, 10);
+            });
+        }
 
         // Add to cart button
-        addToCartBtn.addEventListener('click', addToCart);
+        if (addToCartBtn) {
+            addToCartBtn.addEventListener('click', addToCart);
+        }
 
         // Checkout button
-        checkoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            navigateTo('order-form');
-            updateOrderSummary();
-        });
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                navigateTo('order-form');
+                updateOrderSummary();
+            });
+        }
 
         // Order form submission
-        orderForm.addEventListener('submit', function(e) {
-            prepareOrderSummary();
-        });
+        if (orderForm) {
+            orderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                prepareOrderSummary();
+            });
+        }
     }
 
     function navigateTo(pageId) {
@@ -169,29 +180,23 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             
             // Click event for product image
-            productCard.querySelector('.product-image').addEventListener('click', (e) => {
-                e.preventDefault();
-                showProductDetail(product);
-            });
+            const productImage = productCard.querySelector('.product-image');
+            if (productImage) {
+                productImage.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showProductDetail(product);
+                });
+            }
             
             // Click event for add to cart button
-            productCard.querySelector('.add-to-cart').addEventListener('click', (e) => {
-                e.preventDefault();
-                addToCartFromCard(product.id);
-            });
-            
-            container.appendChild(productCard);
-        });
-    }
-
-    // [Keep all your other existing functions...]
-      
-            // Add click event for add to cart button
-            productCard.querySelector('.add-to-cart').addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                addToCartFromCard(product.id);
-            });
+            const addToCartButton = productCard.querySelector('.add-to-cart');
+            if (addToCartButton) {
+                addToCartButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    addToCartFromCard(product.id);
+                });
+            }
             
             container.appendChild(productCard);
         });
@@ -200,19 +205,22 @@ document.addEventListener('DOMContentLoaded', function() {
     function showProductDetail(product) {
         currentProduct = product;
         
-        document.getElementById('detail-product-image').src = product.image;
-        document.getElementById('detail-product-title').textContent = product.title;
-        document.getElementById('detail-product-description').textContent = product.description;
-        
+        const detailImage = document.getElementById('detail-product-image');
+        const detailTitle = document.getElementById('detail-product-title');
+        const detailDesc = document.getElementById('detail-product-description');
         const originalPriceEl = document.getElementById('detail-original-price');
         const discountPriceEl = document.getElementById('detail-discount-price');
         
+        if (detailImage) detailImage.src = product.image;
+        if (detailTitle) detailTitle.textContent = product.title;
+        if (detailDesc) detailDesc.textContent = product.description;
+        
         if (product.originalPrice > product.discountPrice) {
-            originalPriceEl.textContent = `${product.originalPrice} DA`;
-            discountPriceEl.textContent = `${product.discountPrice} DA`;
+            if (originalPriceEl) originalPriceEl.textContent = `${product.originalPrice} DA`;
+            if (discountPriceEl) discountPriceEl.textContent = `${product.discountPrice} DA`;
         } else {
-            originalPriceEl.textContent = '';
-            discountPriceEl.textContent = `${product.discountPrice} DA`;
+            if (originalPriceEl) originalPriceEl.textContent = '';
+            if (discountPriceEl) discountPriceEl.textContent = `${product.discountPrice} DA`;
         }
         
         navigateTo('product-detail');
@@ -220,17 +228,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function addToCartFromCard(productId) {
         const product = products.find(p => p.id === productId);
-        if (!product) return;
-        
-        currentProduct = product;
-        quantitySelect.value = 1;
-        showProductDetail(product);
+        if (product) {
+            currentProduct = product;
+            if (quantitySelect) quantitySelect.value = 1;
+            showProductDetail(product);
+        }
     }
 
     function addToCart() {
         if (!currentProduct) return;
         
-        const quantity = parseInt(quantitySelect.value);
+        const quantity = quantitySelect ? parseInt(quantitySelect.value) : 1;
         const existingItem = cart.find(item => item.id === currentProduct.id);
         
         if (existingItem) {
@@ -245,23 +253,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Save to localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
-        
-        // Update cart count
         updateCartCount();
-        
-        // Navigate to checkout
         navigateTo('checkout');
     }
 
     function updateCartCount() {
         const count = cart.reduce((total, item) => total + item.quantity, 0);
-        document.querySelector('.cart-count').textContent = count;
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) cartCount.textContent = count;
     }
 
     function updateCartDisplay() {
         const cartItemsList = document.querySelector('.cart-items-list');
+        if (!cartItemsList) return;
         
         cartItemsList.innerHTML = '';
         
@@ -324,16 +329,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateCartSummary(subtotal, discount, total) {
-        document.getElementById('subtotal').textContent = `${subtotal} DA`;
-        document.getElementById('discount').textContent = `-${discount} DA`;
-        document.getElementById('total').textContent = `${total} DA`;
+        const subtotalEl = document.getElementById('subtotal');
+        const discountEl = document.getElementById('discount');
+        const totalEl = document.getElementById('total');
+        
+        if (subtotalEl) subtotalEl.textContent = `${subtotal} DA`;
+        if (discountEl) discountEl.textContent = `-${discount} DA`;
+        if (totalEl) totalEl.textContent = `${total} DA`;
     }
 
     function updateOrderSummary() {
         const orderItemsContainer = document.querySelector('.order-items');
-        let subtotal = 0;
+        if (!orderItemsContainer) return;
         
         orderItemsContainer.innerHTML = '';
+        
+        let subtotal = 0;
         
         cart.forEach(item => {
             const itemTotal = item.price * item.quantity;
@@ -353,9 +364,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const discount = calculateDiscount(cart);
         const total = subtotal - discount;
         
-        document.getElementById('order-subtotal').textContent = `${subtotal} DA`;
-        document.getElementById('order-discount').textContent = `-${discount} DA`;
-        document.getElementById('order-total').textContent = `${total} DA`;
+        const orderSubtotal = document.getElementById('order-subtotal');
+        const orderDiscount = document.getElementById('order-discount');
+        const orderTotal = document.getElementById('order-total');
+        
+        if (orderSubtotal) orderSubtotal.textContent = `${subtotal} DA`;
+        if (orderDiscount) orderDiscount.textContent = `-${discount} DA`;
+        if (orderTotal) orderTotal.textContent = `${total} DA`;
     }
 
     function prepareOrderSummary() {
@@ -379,7 +394,8 @@ document.addEventListener('DOMContentLoaded', function() {
             Total: ${total} DA
         `;
         
-        document.getElementById('order-summary-input').value = orderSummary;
+        const orderSummaryInput = document.getElementById('order-summary-input');
+        if (orderSummaryInput) orderSummaryInput.value = orderSummary;
         
         // Clear the cart after submission
         cart = [];
@@ -406,58 +422,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-
-    function showProductDetail(product) {
-        currentProduct = product;
-        document.getElementById('detail-product-image').src = product.image;
-        document.getElementById('detail-product-title').textContent = product.title;
-        document.getElementById('detail-product-description').textContent = product.description;
-        
-        const originalPriceEl = document.getElementById('detail-original-price');
-        const discountPriceEl = document.getElementById('detail-discount-price');
-        
-        if (product.originalPrice > product.discountPrice) {
-            originalPriceEl.textContent = `${product.originalPrice} DA`;
-            discountPriceEl.textContent = `${product.discountPrice} DA`;
-        } else {
-            originalPriceEl.textContent = '';
-            discountPriceEl.textContent = `${product.discountPrice} DA`;
-        }
-        
-        navigateTo('product-detail');
-    }
-
-    function addToCartFromCard(productId) {
-        const product = products.find(p => p.id === productId);
-        if (product) {
-            currentProduct = product;
-            quantitySelect.value = 1;
-            showProductDetail(product);
-        }
-    }
-
-    function addToCart() {
-        if (!currentProduct) return;
-        
-        const quantity = parseInt(quantitySelect.value);
-        const existingItem = cart.find(item => item.id === currentProduct.id);
-        
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            cart.push({
-                id: currentProduct.id,
-                title: currentProduct.title,
-                price: currentProduct.discountPrice,
-                image: currentProduct.image,
-                quantity: quantity
-            });
-        }
-        
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        navigateTo('checkout');
-    }
-
-    // [Keep all remaining functions...]
 });
