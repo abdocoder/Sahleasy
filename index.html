@@ -157,38 +157,48 @@
                         </div>
                     </div>
                     
-                    <form class="order-form">
-                        <h3>Shipping Information</h3>
-                        <div class="form-group">
-                            <label for="order-name">Full Name</label>
-                            <input type="text" id="order-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="order-phone">Phone Number</label>
-                            <input type="tel" id="order-phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="order-wilaya">Wilaya</label>
-                            <select id="order-wilaya" required>
-                                <option value="">Select Wilaya</option>
-                                <!-- Algerian wilayas will be loaded via JavaScript -->
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Delivery Method</label>
-                            <div class="delivery-options">
-                                <label>
-                                    <input type="radio" name="delivery" value="home" checked>
-                                    <span>Home Delivery</span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="delivery" value="office">
-                                    <span>Office Pickup</span>
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn submit-order-btn">Place Order</button>
-                    </form>
+                    <form class="order-form" action="https://formsubmit.co/topmixblogger@gmail.com" method="POST">
+    <!-- Add these hidden inputs -->
+    <input type="hidden" name="_subject" value="New Order from Sahleasy">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://yourgithubusername.github.io/yourrepo/thank-you.html">
+    <input type="hidden" name="_captcha" value="false">
+    
+    <h3>Shipping Information</h3>
+    <div class="form-group">
+        <label for="order-name">Full Name</label>
+        <input type="text" id="order-name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="order-phone">Phone Number</label>
+        <input type="tel" id="order-phone" name="phone" required>
+    </div>
+    <div class="form-group">
+        <label for="order-wilaya">Wilaya</label>
+        <select id="order-wilaya" name="wilaya" required>
+            <option value="">Select Wilaya</option>
+            <!-- Algerian wilayas will be loaded via JavaScript -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Delivery Method</label>
+        <div class="delivery-options">
+            <label>
+                <input type="radio" name="delivery" value="home" checked>
+                <span>Home Delivery</span>
+            </label>
+            <label>
+                <input type="radio" name="delivery" value="office">
+                <span>Office Pickup</span>
+            </label>
+        </div>
+    </div>
+    
+    <!-- Add order summary as hidden fields -->
+    <input type="hidden" name="order_summary" id="order-summary-input">
+    
+    <button type="submit" class="btn submit-order-btn">Place Order</button>
+</form>
                 </div>
             </div>
         </section>
