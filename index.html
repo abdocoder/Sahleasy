@@ -140,6 +140,7 @@
                 
                 <form class="order-form" action="https://formsubmit.co/topmixblogger@gmail.com" method="POST">
                     <input type="hidden" name="_subject" value="New Sahleasy Order">
+                    <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="https://abdocoder.github.io/Sahleasy/thank-you.html">
                     <input type="hidden" name="_captcha" value="false">
@@ -190,20 +191,11 @@
                                 
                                 <select id="delivery-method" name="delivery_method" required>
     <option value="" disabled selected>Select Delivery Method</option>
-    <option value="home">Home Delivery (+400 DA)</option>
-    <option value="office">Office Delivery (+800 DA)</option>
+    <option value="home">Home Delivery  للمنزل(+400 DA)</option>
+    <option value="office">Office Delivery للمكتب(+800 DA)</option>
                                 </select>
                 
-                                <div class="delivery-options">
-                                    <label>
-                                        <input type="radio" name="delivery" value="home" checked>
-                                        <span>Home Delivery للمنزل</span>
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="delivery" value="office">
-                                        <span>Office Pickup مكتب التوصيل</span>
-                                    </label>
-                                </div>
+                            
                             </div>
                             <button type="submit" class="btn submit-order-btn">Place Order</button>
                         </div>
@@ -230,6 +222,7 @@
                 </div>
                 <form class="contact-form" action="https://formsubmit.co/topmixblogger@gmail.com" method="POST">
                     <input type="hidden" name="_subject" value="New Contact from Sahleasy">
+                    <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_next" value="https://abdocoder.github.io/Sahleasy/thank-you.html">
                     <div class="form-group">
                         <label for="contact-name">Your Name</label>
