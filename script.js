@@ -116,22 +116,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function navigateTo(pageId) {
-        // Close mobile menu if open
-        navMenu.classList.remove('active');
-        
-        // Update active nav link
-        navLinks.forEach(navLink => navLink.classList.remove('active'));
-        document.querySelector(`nav a[data-page="${pageId}"]`)?.classList.add('active');
-        
-        // Show the selected page
-        pages.forEach(page => page.classList.remove('active'));
-        document.getElementById(`${pageId}-page`).classList.add('active');
-        
-        // Update specific pages if needed
-        if (pageId === 'checkout') {
-            updateCartDisplay();
+    // Close mobile menu if open
+    navMenu.classList.remove('active');
+    
+    // Update active nav link
+    navLinks.forEach(navLink => navLink.classList.remove('active'));
+    document.querySelector(`nav a[data-page="${pageId}"]`)?.classList.add('active');
+    
+    // Show the selected page
+    pages.forEach(page => {
+        page.classList.remove('active');
+        if (page.id === `${pageId}-page`) {
+            page.classList.add('active');
+            
+            // Special handling for products page
+            if (pageId === 'products') {
+                // Scroll to the top of the products section
+                window.scrollTo({
+                    top: page.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
         }
+    });
+    
+    // Update specific pages if needed
+    if (pageId === 'checkout') {
+        updateCartDisplay();
     }
+}
 
     function displayProducts(container, productsToDisplay) {
         container.innerHTML = '';
