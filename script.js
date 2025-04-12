@@ -382,16 +382,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 const totalBeforeDelivery = subtotal - discount;
                 
                 // Get delivery cost
-                const deliveryMethod = document.querySelector('input[name="delivery"]:checked')?.value;
+                const delivery-Method = document.querySelector('input[name="delivery"]:checked')?.value;
                 let deliveryCost = 0;
-                let deliveryMethodText = '';
+                let delivery-MethodText = '';
                 
-                if (deliveryMethod === 'home') {
+                if (delivery-Method === 'home') {
                     deliveryCost = 400;
-                    deliveryMethodText = 'Home Delivery (+400 DA)';
-                } else if (deliveryMethod === 'office') {
+                    delivery-MethodText = 'Home Delivery (+400 DA)';
+                } else if (delivery-Method === 'office') {
                     deliveryCost = 800;
-                    deliveryMethodText = 'Office Pickup (+800 DA)';
+                    delivery-MethodText = 'Office Pickup (+800 DA)';
                 }
                 
                 const finalTotal = totalBeforeDelivery + deliveryCost;
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${orderItems}
                     Subtotal: ${subtotal} DA
                     Discount: -${discount} DA
-                    Delivery Method: ${deliveryMethodText}
+                    Delivery Method: ${delivery-MethodText}
                     Delivery Cost: +${deliveryCost} DA
                     Total: ${finalTotal} DA
                 `;
