@@ -32,8 +32,9 @@
             <div class="hero">
                 <h2>Welcome to Sahleasy</h2>
                 <p>Your one-stop shop for quality products</p>
-                <p>algérienne produits Homemade</p>
-                <h2> توصيل 58 ولاية livraison 58 wilaya</h2>
+                <h2>Handmade algerianne </h2>
+                <p>توصيل 58 ولاية والدفع عند الاستلام</p>
+                <a href="#" class="btn" data-page="products">Shop Now</a>
             </div>
             
             <div class="featured-products">
@@ -46,8 +47,8 @@
 
         <!-- Products Page -->
         <section id="products-page" class="page">
-            <h2>tout mes Products</h2>
-            <p>احصل على تخفيض مميز </p>
+            <h2> tout mes Products</h2>
+            <h2>توصيل 58 ولاية</h2>
             <div class="products-grid">
                 <!-- Products loaded via JavaScript -->
             </div>
@@ -81,10 +82,10 @@
                         </div>
                         
                         <div class="discount-info">
-                            <p><i class="fas fa-tag"></i> remise: 200 DA for 2 items, 500 DA for 3 items</p>
+                            <p><i class="fas fa-tag"></i> Discount: 200 DA for 2 items, 500 DA for 3 items</p>
                         </div>
                         
-                        <button class="btn add-to-cart-btn" id="add-to-cart">Ajouter au panier</button>
+                        <button class="btn add-to-cart-btn" id="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -94,7 +95,7 @@
         <section id="checkout-page" class="page">
             <div class="checkout-container">
                 <a href="#" class="back-btn" data-page="home"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
-                <h2> complete voter commande </h2>
+                <h2>Your Cart</h2>
                 
                 <div class="checkout-notice">
                     <p><i class="fas fa-star"></i> Produit Algérienne de Qualité</p>
@@ -112,18 +113,14 @@
                             <span id="subtotal">0 DA</span>
                         </div>
                         <div class="summary-row">
-                            <span>Remise:</span>
+                            <span>Discount:</span>
                             <span id="discount">0 DA</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Delivery:</span>
-                            <span id="delivery-cost">0 DA</span>
                         </div>
                         <div class="summary-row total">
                             <span>Total:</span>
                             <span id="total">0 DA</span>
                         </div>
-                        <button class="btn checkout-btn">confirmer l'ordre</button>
+                        <button class="btn checkout-btn">voire détail de commande</button>
                     </div>
                 </div>
             </div>
@@ -133,7 +130,7 @@
         <section id="order-form-page" class="page">
             <div class="order-form-container">
                 <a href="#" class="back-btn" data-page="checkout"><i class="fas fa-arrow-left"></i> Back to Cart</a>
-                <h2>Complete Your Order</h2>
+                <h2>Completer voter commande</h2>
                 
                 <div class="order-notice">
                     <p><i class="fas fa-star"></i> Produit Algérienne de Qualité</p>
@@ -147,11 +144,10 @@
                     <input type="hidden" name="_next" value="https://abdocoder.github.io/Sahleasy/thank-you.html">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="order_summary" id="order-summary-input">
-                    <input type="hidden" name="delivery_method" id="delivery-method-input">
                     
                     <div class="order-form-wrapper">
                         <div class="order-summary">
-                            <h3>Order details</h3>
+                            <h3>Order Details</h3>
                             <div class="order-items">
                                 <!-- Order items loaded via JavaScript -->
                             </div>
@@ -161,12 +157,8 @@
                                     <span id="order-subtotal">0 DA</span>
                                 </div>
                                 <div class="summary-row">
-                                    <span>Discount:</span>
+                                    <span>Remise:</span>
                                     <span id="order-discount">0 DA</span>
-                                </div>
-                                <div class="summary-row">
-                                    <span>Delivery:</span>
-                                    <span id="order-delivery">0 DA</span>
                                 </div>
                                 <div class="summary-row total">
                                     <span>Total:</span>
@@ -176,8 +168,7 @@
                         </div>
                         
                         <div class="shipping-form">
-                            <h3>Shipping Information</h3>
-                            <h3>معلومات التوصيل </h3>
+                            <h3>Shipping Information معلومات التوصيل</h3>
                             <div class="form-group">
                                 <label for="order-name">Full Name اسمك الكامل</label>
                                 <input type="text" id="order-name" name="name" required>
@@ -187,22 +178,22 @@
                                 <input type="tel" id="order-phone" name="phone" required>
                             </div>
                             <div class="form-group">
-                                <label for="order-wilaya">Wilaya ولاية</label>
+                                <label for="order-wilaya">Wilaya ولابتك</label>
                                 <select id="order-wilaya" name="wilaya" required>
                                     <option value="">Select Wilaya</option>
                                     <!-- Algerian wilayas loaded via JavaScript -->
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Delivery Method طريقة التوصيل</label>
+                
                                 <div class="delivery-options">
                                     <label>
                                         <input type="radio" name="delivery" value="home" checked>
-                                        <span>Home Delivery للمنزل (+400 DA)</span>
+                                        <span>Home Delivery للمنزل</span>
                                     </label>
                                     <label>
                                         <input type="radio" name="delivery" value="office">
-                                        <span>Office Pickup لمكتب التوصيل (+800 DA)</span>
+                                        <span>Office Pickup مكتب التوصيل</span>
                                     </label>
                                 </div>
                             </div>
@@ -220,7 +211,7 @@
                 <div class="contact-info">
                     <h3>Get in Touch</h3>
                     <p><i class="fas fa-phone"></i> +213 541 447 258</p>
-                    <p><i class="fas fa-envelope"></i>sahleasy@gmail.com</p>
+                    <p><i class="fas fa-envelope"></i> sahleasy@gmail.com</p>
                     <p><i class="fas fa-map-marker-alt"></i> Algeria</p>
                     
                     <div class="social-media">
@@ -269,7 +260,7 @@
             <div class="footer-contact">
                 <h4>Contact Us</h4>
                 <p><i class="fas fa-phone"></i> +213 541 447 258</p>
-                <p><i class="fas fa-envelope"></i> sahleasy@gmail.com</p>
+                <p><i class="fas fa-envelope"></i> Moon.jazair@gmail.com</p>
             </div>
             
             <div class="footer-social">
