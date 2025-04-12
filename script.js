@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+kidocument.addEventListener('DOMContentLoaded', function() {
     // Products data with discount prices
     const products = [
         {
@@ -386,4 +386,38 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
     }
+function prepareOrderSummary() {
+    let orderItems = '';
+    let subtotal = 0;
+    
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        orderItems += `${item.title} x ${item.quantity} - ${itemTotal} DA\n`;
+    });
+    
+    const discount = calculateDiscount(cart);
+    const total = subtotal - discount;
+    
+    const orderSummary = `
+        ORDER SUMMARY:
+        ${orderItems}
+        Subtotal: ${subtotal} DA
+        Discount: -${discount} DA
+        Total: ${total} DA
+    `;
+    
+    document.getElementById('order-summary-input').value = orderSummary;
+}
+
+// Add event listener to form submission
+document.querySelector('.order-form').addEventListener('submit', function(e) {
+    prepareOrderSummary();
+    
+    // Clear the cart after submission
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+});
+    
 });
