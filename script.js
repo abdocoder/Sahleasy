@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const quantitySelect = document.getElementById('quantity');
     const checkoutBtn = document.querySelector('.checkout-btn');
     const orderForm = document.querySelector('.order-form');
-    const shopNowBtn = document.querySelector('.hero .btn[data-page="products"]');
 
     // Initialize the app
     init();
@@ -71,9 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function init() {
         setupEventListeners();
         updateCartCount();
-        // Show 3 featured products on home
         displayProducts(document.querySelector('#home-page .products-grid'), products.slice(0, 3));
-        // Show ALL products on products page
         displayProducts(document.querySelector('#products-page .products-grid'), products);
         populateWilayas();
     }
@@ -84,86 +81,68 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.toggle('active');
         });
 
-        // Navigation links
+        // Navigation
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                navigateTo(this.getAttribute('data-page'));
+                const pageId = this.getAttribute('data-page');
+                navigateTo(pageId);
             });
         });
 
-        // Shop Now button
-        if (shopNowBtn) {
-            shopNowBtn.addEventListener('click', function(e) {
+        // Back buttons
+        document.querySelectorAll('.back-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
                 e.preventDefault();
-                navigateTo('products');
-                // Smooth scroll to products section
-                setTimeout(() => {
-                    const productsPage = document.getElementById('products-page');
-                    if (productsPage) {
-                        productsPage.scrollIntoView({ 
-                            behavior: 'smooth' 
-                        });
-                    }
-                }, 10);
+                const pageId = this.getAttribute('data-page');
+                navigateTo(pageId);
             });
-        }
+        });
 
         // Add to cart button
-        if (addToCartBtn) {
-            addToCartBtn.addEventListener('click', addToCart);
-        }
+        addToCartBtn.addEventListener('click', addToCart);
 
-        // Checkout button
-        if (checkoutBtn) {
-            checkoutBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                navigateTo('order-form');
-                updateOrderSummary();
-            });
-        }
+        // Proceed to checkout button
+        checkoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('order-form');
+            updateOrderSummary();
+        });
 
-        // Order form submission
-        if (orderForm) {
-            orderForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                prepareOrderSummary();
-            });
-        }
+        // Prepare order summary before form submission
+        orderForm.addEventListener('submit', function(e) {
+            prepareOrderSummary();
+        });
     }
 
     function navigateTo(pageId) {
-        // Close mobile menu
+        // Close mobile menu if open
         navMenu.classList.remove('active');
         
         // Update active nav link
-        navLinks.forEach(link => link.classList.remove('active'));
-        const activeNav = document.querySelector(`nav a[data-page="${pageId}"]`);
-        if (activeNav) activeNav.classList.add('active');
+        navLinks.forEach(navLink => navLink.classList.remove('active'));
+        document.querySelector(`nav a[data-page="${pageId}"]`)?.classList.add('active');
         
-        // Show selected page
+        // Show the selected page
         pages.forEach(page => page.classList.remove('active'));
-        const activePage = document.getElementById(`${pageId}-page`);
-        if (activePage) activePage.classList.add('active');
+        document.getElementById(`${pageId}-page`).classList.add('active');
         
-        // Special cases
+        // Update specific pages if needed
         if (pageId === 'checkout') {
             updateCartDisplay();
         }
     }
 
     function displayProducts(container, productsToDisplay) {
-        if (!container) return;
-        
         container.innerHTML = '';
         
         productsToDisplay.forEach(product => {
-            const discountPercentage = Math.round(
-                ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100
-            );
-            
             const productCard = document.createElement('div');
             productCard.className = 'product-card';
+            
+            // Add badge if there's a discount
+            const discountPercentage = Math.round(((product.originalPrice - product.discountPrice) / product.originalPrice) * 100);
+            
             productCard.innerHTML = `
                 ${product.originalPrice > product.discountPrice ? 
                     `<div class="product-badge">-${discountPercentage}%</div>` : ''}
@@ -179,24 +158,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             
-            // Click event for product image
-            const productImage = productCard.querySelector('.product-image');
-            if (productImage) {
-                productImage.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showProductDetail(product);
-                });
-            }
+            // Add click event for image to show product detail
+            productCard.querySelector('.product-image').addEventListener('click', (e) => {
+                e.preventDefault();
+                showProductDetail(product);
+            });
             
-            // Click event for add to cart button
-            const addToCartButton = productCard.querySelector('.add-to-cart');
-            if (addToCartButton) {
-                addToCartButton.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    addToCartFromCard(product.id);
-                });
-            }
+            // Add click event for add to cart button
+            productCard.querySelector('.add-to-cart').addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                addToCartFromCard(product.id);
+            });
             
             container.appendChild(productCard);
         });
@@ -205,22 +178,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function showProductDetail(product) {
         currentProduct = product;
         
-        const detailImage = document.getElementById('detail-product-image');
-        const detailTitle = document.getElementById('detail-product-title');
-        const detailDesc = document.getElementById('detail-product-description');
+        document.getElementById('detail-product-image').src = product.image;
+        document.getElementById('detail-product-title').textContent = product.title;
+        document.getElementById('detail-product-description').textContent = product.description;
+        
         const originalPriceEl = document.getElementById('detail-original-price');
         const discountPriceEl = document.getElementById('detail-discount-price');
         
-        if (detailImage) detailImage.src = product.image;
-        if (detailTitle) detailTitle.textContent = product.title;
-        if (detailDesc) detailDesc.textContent = product.description;
-        
         if (product.originalPrice > product.discountPrice) {
-            if (originalPriceEl) originalPriceEl.textContent = `${product.originalPrice} DA`;
-            if (discountPriceEl) discountPriceEl.textContent = `${product.discountPrice} DA`;
+            originalPriceEl.textContent = `${product.originalPrice} DA`;
+            discountPriceEl.textContent = `${product.discountPrice} DA`;
         } else {
-            if (originalPriceEl) originalPriceEl.textContent = '';
-            if (discountPriceEl) discountPriceEl.textContent = `${product.discountPrice} DA`;
+            originalPriceEl.textContent = '';
+            discountPriceEl.textContent = `${product.discountPrice} DA`;
         }
         
         navigateTo('product-detail');
@@ -228,17 +198,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function addToCartFromCard(productId) {
         const product = products.find(p => p.id === productId);
-        if (product) {
-            currentProduct = product;
-            if (quantitySelect) quantitySelect.value = 1;
-            showProductDetail(product);
-        }
+        if (!product) return;
+        
+        currentProduct = product;
+        quantitySelect.value = 1;
+        showProductDetail(product);
     }
 
     function addToCart() {
         if (!currentProduct) return;
         
-        const quantity = quantitySelect ? parseInt(quantitySelect.value) : 1;
+        const quantity = parseInt(quantitySelect.value);
         const existingItem = cart.find(item => item.id === currentProduct.id);
         
         if (existingItem) {
@@ -253,20 +223,23 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
+        // Save to localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Update cart count
         updateCartCount();
+        
+        // Navigate to checkout
         navigateTo('checkout');
     }
 
     function updateCartCount() {
         const count = cart.reduce((total, item) => total + item.quantity, 0);
-        const cartCount = document.querySelector('.cart-count');
-        if (cartCount) cartCount.textContent = count;
+        document.querySelector('.cart-count').textContent = count;
     }
 
     function updateCartDisplay() {
         const cartItemsList = document.querySelector('.cart-items-list');
-        if (!cartItemsList) return;
         
         cartItemsList.innerHTML = '';
         
@@ -329,22 +302,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateCartSummary(subtotal, discount, total) {
-        const subtotalEl = document.getElementById('subtotal');
-        const discountEl = document.getElementById('discount');
-        const totalEl = document.getElementById('total');
-        
-        if (subtotalEl) subtotalEl.textContent = `${subtotal} DA`;
-        if (discountEl) discountEl.textContent = `-${discount} DA`;
-        if (totalEl) totalEl.textContent = `${total} DA`;
+        document.getElementById('subtotal').textContent = `${subtotal} DA`;
+        document.getElementById('discount').textContent = `-${discount} DA`;
+        document.getElementById('total').textContent = `${total} DA`;
     }
 
     function updateOrderSummary() {
         const orderItemsContainer = document.querySelector('.order-items');
-        if (!orderItemsContainer) return;
+        let subtotal = 0;
         
         orderItemsContainer.innerHTML = '';
-        
-        let subtotal = 0;
         
         cart.forEach(item => {
             const itemTotal = item.price * item.quantity;
@@ -364,13 +331,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const discount = calculateDiscount(cart);
         const total = subtotal - discount;
         
-        const orderSubtotal = document.getElementById('order-subtotal');
-        const orderDiscount = document.getElementById('order-discount');
-        const orderTotal = document.getElementById('order-total');
-        
-        if (orderSubtotal) orderSubtotal.textContent = `${subtotal} DA`;
-        if (orderDiscount) orderDiscount.textContent = `-${discount} DA`;
-        if (orderTotal) orderTotal.textContent = `${total} DA`;
+        document.getElementById('order-subtotal').textContent = `${subtotal} DA`;
+        document.getElementById('order-discount').textContent = `-${discount} DA`;
+        document.getElementById('order-total').textContent = `${total} DA`;
     }
 
     function prepareOrderSummary() {
@@ -394,8 +357,7 @@ document.addEventListener('DOMContentLoaded', function() {
             Total: ${total} DA
         `;
         
-        const orderSummaryInput = document.getElementById('order-summary-input');
-        if (orderSummaryInput) orderSummaryInput.value = orderSummary;
+        document.getElementById('order-summary-input').value = orderSummary;
         
         // Clear the cart after submission
         cart = [];
