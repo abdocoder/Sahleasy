@@ -1,4 +1,4 @@
-kidocument.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     // Products data with discount prices
     const products = [
         {
@@ -6,7 +6,7 @@ kidocument.addEventListener('DOMContentLoaded', function() {
             title: 'Smart Watch Pro',
             originalPrice: 7000,
             discountPrice: 6000,
-            image: 'https://abdocoder.github.io/images/watch1.png',
+            image: 'images/watch1.png',
             description: 'Premium smart watch with health tracking features'
         },
         {
@@ -14,7 +14,7 @@ kidocument.addEventListener('DOMContentLoaded', function() {
             title: 'Elegant Watch',
             originalPrice: 7000,
             discountPrice: 6000,
-            image: 'https://abdocoder.github.io/images/watch2.png',
+            image: 'images/watch2.png',
             description: 'Classic elegant watch for formal occasions'
         },
         {
@@ -22,7 +22,7 @@ kidocument.addEventListener('DOMContentLoaded', function() {
             title: 'Classic Watch',
             originalPrice: 7000,
             discountPrice: 6000,
-            image: 'https://abdocoder.github.io/images/watch3.png',
+            image: 'images/watch3.png',
             description: 'Timeless classic watch design'
         },
         {
@@ -30,7 +30,7 @@ kidocument.addEventListener('DOMContentLoaded', function() {
             title: 'Premium Smartphone',
             originalPrice: 5000,
             discountPrice: 4500,
-            image: 'https://abdocoder.github.io/images/phone1.png',
+            image: 'images/phone1.png',
             description: 'High-performance smartphone with advanced camera'
         }
     ];
@@ -59,8 +59,6 @@ kidocument.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('nav a[data-page]');
     const pages = document.querySelectorAll('.page');
-    const successModal = document.getElementById('success-modal');
-    const modalCloseBtn = document.querySelector('.modal-close-btn');
     const addToCartBtn = document.getElementById('add-to-cart');
     const quantitySelect = document.getElementById('quantity');
     const checkoutBtn = document.querySelector('.checkout-btn');
@@ -111,21 +109,9 @@ kidocument.addEventListener('DOMContentLoaded', function() {
             updateOrderSummary();
         });
 
-        // Submit order form
-        orderForm.addEventListener('submit', submitOrder);
-
-        // Close modal
-        modalCloseBtn.addEventListener('click', function() {
-            successModal.classList.remove('active');
-            navigateTo('home');
-        });
-
-        // Close modal when clicking outside
-        successModal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-                navigateTo('home');
-            }
+        // Prepare order summary before form submission
+        orderForm.addEventListener('submit', function(e) {
+            prepareOrderSummary();
         });
     }
 
@@ -350,6 +336,35 @@ kidocument.addEventListener('DOMContentLoaded', function() {
         document.getElementById('order-total').textContent = `${total} DA`;
     }
 
+    function prepareOrderSummary() {
+        let orderItems = '';
+        let subtotal = 0;
+        
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+            orderItems += `${item.title} x ${item.quantity} - ${itemTotal} DA\n`;
+        });
+        
+        const discount = calculateDiscount(cart);
+        const total = subtotal - discount;
+        
+        const orderSummary = `
+            ORDER SUMMARY:
+            ${orderItems}
+            Subtotal: ${subtotal} DA
+            Discount: -${discount} DA
+            Total: ${total} DA
+        `;
+        
+        document.getElementById('order-summary-input').value = orderSummary;
+        
+        // Clear the cart after submission
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+    }
+
     function removeFromCart(productId) {
         cart = cart.filter(item => item.id !== productId);
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -369,55 +384,4 @@ kidocument.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-
-    function submitOrder(e) {
-        e.preventDefault();
-        
-        if (cart.length === 0) {
-            alert('Your cart is empty!');
-            return;
-        }
-        
-        // In a real application, you would process the order here
-        successModal.classList.add('active');
-        
-        // Clear the cart
-        cart = [];
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-    }
-function prepareOrderSummary() {
-    let orderItems = '';
-    let subtotal = 0;
-    
-    cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-        orderItems += `${item.title} x ${item.quantity} - ${itemTotal} DA\n`;
-    });
-    
-    const discount = calculateDiscount(cart);
-    const total = subtotal - discount;
-    
-    const orderSummary = `
-        ORDER SUMMARY:
-        ${orderItems}
-        Subtotal: ${subtotal} DA
-        Discount: -${discount} DA
-        Total: ${total} DA
-    `;
-    
-    document.getElementById('order-summary-input').value = orderSummary;
-}
-
-// Add event listener to form submission
-document.querySelector('.order-form').addEventListener('submit', function(e) {
-    prepareOrderSummary();
-    
-    // Clear the cart after submission
-    cart = [];
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-});
-    
 });
