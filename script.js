@@ -272,11 +272,6 @@ document.addEventListener('DOMContentLoaded', function() {
             cartItemsList.appendChild(cartItemElement);
         });
         
-
-
-                // Calculate discount based on quantity
-              
-                 
         // Calculate discount based on quantity
         const discount = calculateDiscount(cart);
         const total = subtotal - discount;
@@ -321,7 +316,8 @@ document.addEventListener('DOMContentLoaded', function() {
         cart.forEach(item => {
             const itemTotal = item.price * item.quantity;
             subtotal += itemTotal;
-   const orderItem = document.createElement('div');
+            
+            const orderItem = document.createElement('div');
             orderItem.className = 'order-item';
             
             orderItem.innerHTML = `
@@ -360,7 +356,6 @@ document.addEventListener('DOMContentLoaded', function() {
             Discount: -${discount} DA
             Total: ${total} DA
         `;
-
         
         document.getElementById('order-summary-input').value = orderSummary;
         
