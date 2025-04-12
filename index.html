@@ -31,8 +31,7 @@
         <section id="home-page" class="page active">
             <div class="hero">
                 <h2>Welcome to Sahleasy</h2>
-                <p>Your one-stop shop for quality products
-                 </p>
+                <p>Your one-stop shop for quality products</p>
                 <p>algérienne produits Homemade</p>
                 <h2> توصيل 58 ولاية livraison 58 wilaya</h2>
             </div>
@@ -116,6 +115,10 @@
                             <span>Remise:</span>
                             <span id="discount">0 DA</span>
                         </div>
+                        <div class="summary-row">
+                            <span>Delivery:</span>
+                            <span id="delivery-cost">0 DA</span>
+                        </div>
                         <div class="summary-row total">
                             <span>Total:</span>
                             <span id="total">0 DA</span>
@@ -144,6 +147,7 @@
                     <input type="hidden" name="_next" value="https://abdocoder.github.io/Sahleasy/thank-you.html">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="order_summary" id="order-summary-input">
+                    <input type="hidden" name="delivery_method" id="delivery-method-input">
                     
                     <div class="order-form-wrapper">
                         <div class="order-summary">
@@ -159,6 +163,10 @@
                                 <div class="summary-row">
                                     <span>Discount:</span>
                                     <span id="order-discount">0 DA</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Delivery:</span>
+                                    <span id="order-delivery">0 DA</span>
                                 </div>
                                 <div class="summary-row total">
                                     <span>Total:</span>
@@ -186,19 +194,19 @@
                                 </select>
                             </div>
                             <div class="form-group">
-            
+                                <label>Delivery Method طريقة التوصيل</label>
                                 <div class="delivery-options">
                                     <label>
                                         <input type="radio" name="delivery" value="home" checked>
-                                        <span>Home Delivery للمنزل</span>
+                                        <span>Home Delivery للمنزل (+400 DA)</span>
                                     </label>
                                     <label>
                                         <input type="radio" name="delivery" value="office">
-                                        <span>Office Pickup لمكتب التوصيل</span>
+                                        <span>Office Pickup لمكتب التوصيل (+800 DA)</span>
                                     </label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn submit-order-btn">Place Order </button>
+                            <button type="submit" class="btn submit-order-btn">Place Order</button>
                         </div>
                     </div>
                 </form>
