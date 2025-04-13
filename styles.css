@@ -148,9 +148,12 @@ main {
   color: white;
   padding: 50px;
   text-align: center;
-  border-radius: 10px ,red;
   margin-bottom: 30px;
   opacity:0.4;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
 }
 
 @keyframes gradientBG {
