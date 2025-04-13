@@ -141,13 +141,13 @@ main {
 
 /* Home Page Styles */
 .hero {
-    background-image : url(images/logo.png);
+    background-color : green;
     color: white;
     padding: 50px;
     text-align: center;
     border-radius: 10px;
     margin-bottom: 30px;
-    opacity :0.35;
+    opacity :0.5;
 }
 
 .hero h2 {
