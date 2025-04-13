@@ -202,27 +202,11 @@ main {
 }
 
 .featured-products h3 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: #fff;
-  text-align: center;
-  text-shadow: 
-    0 0 5px #0ff,
-    0 0 10px #0ff,
-    0 0 20px #0ff;
-  animation: neonFlicker 1.5s infinite alternate;
-}
-
-@keyframes neonFlicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    text-shadow: 
-      0 0 5px #0ff,
-      0 0 10px #0ff,
-      0 0 20px #0ff;
-  }
-  20%, 24%, 55% {
-    text-shadow: none;
-  }
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-style:italic;
+    color: #333;
 }
 html {
     scroll-behavior: smooth;
