@@ -155,11 +155,13 @@ main {
     font-size: 2.5rem;
     margin-bottom: 15px;
     color:red;
+    opacity:1;
 }
 
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 20px;
+    color:black;
 }
 
 .featured-products h3 {
