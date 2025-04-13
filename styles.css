@@ -141,28 +141,26 @@ main {
 
 /* Home Page Styles */
 .hero {
-    background:url(images/logo.png);
-    background-size:cover;
-    background-position:center;
+    color:green;
     padding: 50px;
     text-align: center;
     border-radius: 10px ,red;
     margin-bottom: 30px;
-    opacity:0.3;
+    opacity:0.4;
 }
 
 .hero h2 {
     font-size: 2.5rem;
     margin-bottom: 15px;
     font-style:italic;
-    color:green;
+    color:orange;
 }
 
 .hero p {
     font-size: 1.2rem;
     font-style:italic;
     margin-bottom: 20px;
-    color:black;
+    color: white;
 }
 
 .featured-products h3 {
