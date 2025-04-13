@@ -154,8 +154,8 @@ main {
 .hero h2 {
     font-size: 2.5rem;
     margin-bottom: 15px;
-    color:red;
-    opacity:1;
+    color:black;
+    opacity:0.9;
 }
 
 .hero p {
