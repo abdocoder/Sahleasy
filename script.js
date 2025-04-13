@@ -12,10 +12,25 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 2,
             title: 'VASE MURALE LAVANDE BEIGE 3',
-            originalPrice: 7000,
-            discountPrice: 6000,
+            originalPrice: 3000,
+            discountPrice: 2500,
             image: 'images/produit2.jpg',
-            description: 'Classic elegant watch for formal occasions'
+            description: 'CADRE ÉTAGÈRE 
+
+🔊🔊 QUANTITÉ LIMITÉE 🔊🔊
+Prix 💰: 2500DA une pièce 🚨🚨
+               4500DA deux pièces 🚨🚨
+🚚 LIVRAISON GRATUITE AU NORD 🚚
+📐📏DIMENSION 40/60 📏 📐
+.
+.
+.
+ إطار الرف 2
+ 🔊🔊الكمية محدودة 🔊🔊
+ السعر 💰 : 2500دج للقطعة 🚨🚨
+                4500دج قطعتين 🚨🚨
+ 🚚 التوصيل مجاني للشمال 🚚
+ 📐📏البعد 40/60 📏 📐'
         },
         {
             id: 3,
