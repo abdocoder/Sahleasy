@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 2,
-            title: 'Elegant Watch',
+            title: 'VASE MURALE LAVANDE BEIGE 3',
             originalPrice: 7000,
             discountPrice: 6000,
-            image: 'images/produit2',
+            image: 'images/produit2.jpg',
             description: 'Classic elegant watch for formal occasions'
         },
         {
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Classic Watch',
             originalPrice: 7000,
             discountPrice: 6000,
-            image: 'images/watch3.png',
-            description: 'Timeless classic watch design'
+            image: 'images/produit3.jpg',
+            description: 'VASE MURALE LAVANDE BEIGE 3'
         },
         {
             id: 4,
