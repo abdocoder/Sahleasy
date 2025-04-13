@@ -139,29 +139,64 @@ main {
     display: block;
 }
 
+/* Home Page Styles *
 /* Home Page Styles */
 .hero {
-    background-color:green;
-    color:white;
-    padding: 50px;
-    text-align: center;
-    border-radius: 10px ,red;
-    margin-bottom: 30px;
-    opacity:0.4;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  align-items: center;
+  color: white;
+  padding: 50px;
+  text-align: center;
+  border-radius: 10px ,red;
+  margin-bottom: 30px;
+  opacity:0.4;
 }
 
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 .hero h2 {
-    font-size: 2.0rem;
-    margin-bottom: 15px;
-    font-style:italic;
-    color:orange;
+  font-size: 2.0rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #ff3366, #33ccff, #ffcc00);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: liquidFlow 4s linear infinite;
+  text-align: center;
+  letter-spacing: 1px;
 }
 
-.hero p {
-    font-size: 1.2rem;
-    font-style:italic;
-    margin-bottom: 20px;
-    color: white;
+@keyframes liquidFlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+.hero p{
+  font-size:1rem;
+  font-family: monospace;
+  overflow: hidden;
+  border-right: 2px solid #333;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 2px;
+  animation: 
+    typing 3.5s steps(30, end),
+    blink-caret 0.5s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #333; }
 }
 
 .featured-products h3 {
