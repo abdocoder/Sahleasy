@@ -3,18 +3,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const products = [
         {
             id: 1,
-            title: 'Smart Watch Pro',
-            originalPrice: 7000,
-            discountPrice: 6000,
-            image: 'images/watch1.png',
-            description: 'Premium smart watch with health tracking features'
+            title: 'SUPPORT PLANTES LARGE 2 ESPACES',
+            originalPrice: 4800,
+            discountPrice: 3500,
+            image: 'images/produit1.jpg',
+            description: 'مساحتان للنباتات (20 سم لكل واحدة) مع ارتفاع 54 سم'
         },
         {
             id: 2,
             title: 'Elegant Watch',
             originalPrice: 7000,
             discountPrice: 6000,
-            image: 'images/watch2.png',
+            image: 'images/produit2',
             description: 'Classic elegant watch for formal occasions'
         },
         {
