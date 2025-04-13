@@ -82,10 +82,10 @@
                         </div>
                         
                         <div class="discount-info">
-                            <p><i class="fas fa-tag"></i> Remise: 200 DA for 2 items, 500 DA for 3 items</p>
+                            <p><i class="fas fa-tag"></i> تخفيض 200دج لاثنين و500 دج عند اخذك 3 طلبيات</p>
                         </div>
                         
-                        <button class="btn add-to-cart-btn" id="add-to-cart">Add to Cart</button>
+                        <button class="btn add-to-cart-btn" id="add-to-cart">اضف الى السلة</button>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
         <section id="checkout-page" class="page">
             <div class="checkout-container">
                 <a href="#" class="back-btn" data-page="home"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
-                <h2>Your Cart</h2>
+                <h2>اضف الى السلة</h2>
                 
                 <div class="checkout-notice">
                     <p><i class="fas fa-star"></i> Produit Algérienne de Qualité</p>
@@ -109,18 +109,18 @@
                     </div>
                     <div class="cart-summary">
                         <div class="summary-row">
-                            <span>Subtotal:</span>
+                            <span>سعر الطلبية</span>
                             <span id="subtotal">0 DA</span>
                         </div>
                         <div class="summary-row">
-                            <span>Remise:</span>
+                            <span>تخفيض</span>
                             <span id="discount">0 DA</span>
                         </div>
                         <div class="summary-row total">
-                            <span>Total sans livraison :</span>
+                            <span>السعر بدون توصيل:</span>
                             <span id="total">0 DA</span>
                         </div>
-                        <button class="btn checkout-btn"> détail de commande</button>
+                        <button class="btn checkout-btn"> اتمام معلومات الطلب</button>
                     </div>
                 </div>
             </div>
@@ -154,15 +154,15 @@
                             </div>
                             <div class="order-totals">
                                 <div class="summary-row">
-                                    <span>Subtotal:</span>
+                                    <span>سعر الطلب:</span>
                                     <span id="order-subtotal">0 DA</span>
                                 </div>
                                 <div class="summary-row">
-                                    <span>Remise:</span>
+                                    <span>تخفيض:</span>
                                     <span id="order-discount">0 DA</span>
                                 </div>
                                 <div class="summary-row total">
-                                    <span>Total sans livraison :</span>
+                                    <span>المجموع بدون توصيل :</span>
                                     <span id="order-total">0 DA</span>
                                 </div>
                             </div>
@@ -170,6 +170,7 @@
                         
                         <div class="shipping-form">
                             <h3>Shipping Information معلومات التوصيل</h3>
+                            <br>
                             <div class="form-group">
                                 <label for="order-name">Full Name اسمك الكامل</label>
                                 <input type="text" id="order-name" name="name" required>
@@ -186,13 +187,17 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="order-adresse">adrsse ادخل عنوانك</label>
+                                <input type="text" id="order-name" name="text" required>
+                            </div>
+                            <div class="form-group">
                                 
                                 <!-- hadi li zedtha -->
                                 
                                 <select id="delivery-method" name="delivery_method" required>
-    <option value="" disabled selected>Select Delivery Method</option>
-    <option value="home">Home Delivery  للمنزل(+400 DA)</option>
-    <option value="office">Office Delivery للمكتب(+800 DA)</option>
+    <option value="" disabled selected>خيارات الشحن</option>
+    <option value="home">Home Delivery  للمنزل(+800 DA)</option>
+    <option value="office">Office Delivery للمكتب(+400DA)</option>
                                 </select>
                 
                             
@@ -203,6 +208,9 @@
                 </form>
             </div>
         </section>
+        <p> ملاحظة: يختلف سعر التوصيل للمنزل حسب الولاية، سوف يتم تحصيل تلك الرسوم مضافة الي سعر الطلب عند الاستلام
+
+  </p>
 
         <!-- Contact Page -->
         <section id="contact-page" class="page">
