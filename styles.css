@@ -146,16 +146,15 @@ main {
     background-position:center;
     padding: 50px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 10px ,red;
     margin-bottom: 30px;
-    opacity:0.3;
+    opacity:0.8;
 }
 
 .hero h2 {
     font-size: 2.5rem;
     margin-bottom: 15px;
     color:black;
-    opacity:0.9;
 }
 
 .hero p {
