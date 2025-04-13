@@ -142,7 +142,7 @@ main {
 /* Home Page Styles */
 .hero {
     background:url(images/logo.png);
-    background-width:100px;
+    background-width:50px;
     color: white;
     padding: 50px;
     text-align: center;
