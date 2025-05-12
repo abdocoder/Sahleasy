@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: ' مصباح خشبي',
             originalPrice: 3000,
             discountPrice: 2500,
-            image: 'images/lampwood2',
+            image: 'images/lampwood2.jpg',
             description: ' مصنوع بالخشب يعطيك صلابة ومنظر جميل لغرفتك'
         },
     ];
