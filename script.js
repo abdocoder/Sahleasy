@@ -4,16 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 1,
             title: 'Lampwood base',
-            originalPrice: 4800,
-            discountPrice: 3500,
+            originalPrice: 2500,
+            discountPrice: 2000,
             image: 'images/lampwood.jpg',
             description: 'مصباح خشبي عصري صغير وبضوء خافت يعطيك جمالية لغرفتك'
         },
         {
             id: 2,
             title: ' مصباح خشبي',
-            originalPrice: 3000,
-            discountPrice: 2500,
+            originalPrice: 2500,
+            discountPrice: 2000,
             image: 'images/lampwood2.jpg',
             description: ' مصنوع بالخشب يعطيك صلابة ومنظر جميل لغرفتك'
         },
