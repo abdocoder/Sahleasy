@@ -3,36 +3,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const products = [
         {
             id: 1,
-            title: 'SUPPORT PLANTES LARGE 2 ESPACES',
+            title: 'Lampwood base',
             originalPrice: 4800,
             discountPrice: 3500,
-            image: 'images/produit1.jpg',
-            description: 'مساحتان للنباتات (20 سم لكل واحدة) مع ارتفاع 54 سم'
+            image: 'images/lampwood.jpg',
+            description: 'مصباح خشبي عصري صغير وبضوء خافت يعطيك جمالية لغرفتك'
         },
         {
             id: 2,
-            title: 'VASE MURALE LAVANDE BEIGE 3',
+            title: ' مصباح خشبي',
             originalPrice: 3000,
             discountPrice: 2500,
-            image: 'images/produit2.jpg',
-            description: 'CADRE ÉTAGÈRE مصنوع بالخشب الاحمر يعطيك صلابة ومنظر جميل لغرفتك'
+            image: 'images/lampwood2',
+            description: ' مصنوع بالخشب يعطيك صلابة ومنظر جميل لغرفتك'
         },
-        {
-            id: 3,
-            title: 'Classic Watch',
-            originalPrice: 3800,
-            discountPrice: 2800,
-            image: 'images/produit3.jpg',
-            description: 'قم بتزيين منزلك أو مكتبك بحامل النباتات المصنوع من الحديد الأبيض المطلي.'
-        },
-        {
-            id: 4,
-            title: 'Premium Smartphone',
-            originalPrice: 5000,
-            discountPrice: 4500,
-            image: 'images/phone1.png',
-            description: 'High-performance smartphone with advanced camera'
-        }
     ];
 
     // Algerian wilayas
