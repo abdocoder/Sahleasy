@@ -61,7 +61,18 @@
                 <a href="#" class="back-btn" data-page="home"><i class="fas fa-arrow-left"></i> الصفحة الرئيسية</a>
                 <div class="product-detail">
                     <div class="product-image-container">
-                        <img id="detail-product-image" src="" alt="Product Image" class="product-detail-image">
+                        <div class="product-gallery">
+                            <div class="main-image-container">
+                                <img id="detail-product-image" src="" alt="Product Image" class="product-detail-image">
+                            </div>
+                            <div class="gallery-thumbnails" id="product-thumbnails">
+                                <!-- Thumbnails will be loaded via JavaScript -->
+                            </div>
+                            <div class="gallery-controls">
+                                <button class="gallery-control prev" id="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                                <button class="gallery-control next" id="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
                     </div>
                     <div class="product-info-container">
                         <h2 id="detail-product-title"></h2>
@@ -162,8 +173,12 @@
                                     <span>تخفيض:</span>
                                     <span id="order-discount">0 DA</span>
                                 </div>
+                                <div class="summary-row">
+                                    <span>تكلفة التوصيل:</span>
+                                    <span id="order-delivery-cost">0 DA</span>
+                                </div>
                                 <div class="summary-row total">
-                                    <span>المجموع بدون توصيل :</span>
+                                    <span>السعر النهائي شامل التوصيل :</span>
                                     <span id="order-total">0 DA</span>
                                 </div>
                             </div>
