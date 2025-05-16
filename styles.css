@@ -139,7 +139,7 @@ main {
     display: block;
 }
 
-/* Home Page Styles *
+/* Home Page Styles */
 /* Home Page Styles */
 .hero {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -729,4 +729,4 @@ footer {
         position: static;
         margin-top: 20px;
     }
-}
+    }
