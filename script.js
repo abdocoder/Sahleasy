@@ -442,3 +442,4 @@ Final Total (including delivery): ${finalTotal} DA
             });
         });
                     }
+     });
